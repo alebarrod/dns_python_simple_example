@@ -53,7 +53,6 @@ def get_data(url):
     data_dict = dict()
     data_dict['a'] = list()
     data_dict['aaaa'] = list()
-    data_dict['ns'] = list()
     data_dict['mx'] = list()
     data_dict['cname'] = list()
 
@@ -121,12 +120,18 @@ def get_data(url):
     return data_dict
 
 
+def print_dns_object(tree):
+    print_dns_recursive()
+
+
+def print_dns_recursive(tree, tabs):
+    if tree.children == []:
+        print('[+]' + tabs + tree.url + ':')
+
+
+
 def main(url):
     results = start_search(url)
-
-
-def print_dns_object(tree):
-    pass
 
 
 if __name__ == '__main__' and len(sys.argv) == 2:
