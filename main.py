@@ -131,9 +131,12 @@ def print_dns_recursive(tree, tabs):
     print('[+]' + tabs + url + ':')
     print('[+]\t' + tabs + 'Mail servers:')
     for mail in tree.data['mx']:
-        print('[+]\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']:')
         for ip in mail[1]:
-            print('[+]\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']:' + str(ip))
+            print('[+]\t\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']: ' + str(ip))
+
+    print('[+]\t' + tabs + 'Related IPv4:')
+    for ip in tree.data['a']:
+        print('[+]\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
 
 
 def main(url):
