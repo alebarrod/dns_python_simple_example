@@ -2,6 +2,7 @@ import dns
 import dns.resolver
 import dns.rdatatype
 import sys
+import copy
 
 
 class DnsContainer:
@@ -12,19 +13,19 @@ class DnsContainer:
 
 
 def search_recursive(url):
-    children = get_subdomain(url)
-    data = get_data(url)
+    children = copy.deepcopy(get_subdomain(url))
+    data = copy.deepcopy(get_data(url))
 
     # Leaf node of the tree
     if children == []:
-        return DnsContainer(url=url, data=data, children=children)
+        return DnsContainer(url=url, data=data, children=copy.deepcopy(children))
     else:   # Inner node (with a list of children)
         temp_list = list()
         for child in children:
-            temp_list.append(search_recursive(child))
-        temp_list.append(DnsContainer(url=url, data=data, children=temp_list))
+            temp_list.append(copy.deepcopy(search_recursive(child)))
+        temp_list.append(DnsContainer(url=url, data=data, children=copy.deepcopy(temp_list)))
 
-        return DnsContainer(url=url, data=data, children=temp_list)
+        return DnsContainer(url=url, data=data, children=copy.deepcopy(temp_list))
 
 
 def start_search(url):
@@ -170,5 +171,5 @@ def main(url):
 
 if __name__ == '__main__': # and len(sys.argv) == 2:
     print('Start!')
-    main('0xword.com')
+    main('uax.es')
 
