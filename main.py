@@ -169,7 +169,7 @@ def main(url):
     print_dns_object(results)
 
 
-if __name__ == '__main__': # and len(sys.argv) == 2:
+if __name__ == '__main__' and len(sys.argv) == 2:
     print('Start!')
-    main('uax.es')
+    main(sys.argv[1])
 
