@@ -121,29 +121,54 @@ def get_data(url):
 
 
 def print_dns_object(tree):
-    print_dns_recursive()
+    return print_dns_recursive(tree, '')
 
 
 def print_dns_recursive(tree, tabs):
-    # if tree.children == []:
-    print(type(tree.url))
     url = tree.url if type(tree.url) == str else tree.url.to_text()
-    print('[+]' + tabs + url + ':')
-    print('[+]\t' + tabs + 'Mail servers:')
-    for mail in tree.data['mx']:
-        for ip in mail[1]:
-            print('[+]\t\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']: ' + str(ip))
 
-    print('[+]\t' + tabs + 'Related IPv4:')
-    for ip in tree.data['a']:
-        print('[+]\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+    if len(tree.children) == 0:
+        print('[+]\t' + tabs + url + ':')
+        print('[-]\t\t' + tabs + 'Mail servers:')
+        for mail in tree.data['mx']:
+            for ip in mail[1]:
+                print('[-]\t\t\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']: ' + str(ip))
+
+        print('[-]\t\t' + tabs + 'Related IPv4:')
+        for ip in tree.data['a']:
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+
+        print('[-]\t\t' + tabs + 'Related IPv6:')
+        for ip in tree.data['aaaa']:
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+        return
+    else:
+        print('[+]\t' + tabs + url + ':')
+        print('[-]\t\t' + tabs + 'Mail servers:')
+        for mail in tree.data['mx']:
+            for ip in mail[1]:
+                print('[-]\t\t\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']: ' + str(ip))
+
+        print('[-]\t\t' + tabs + 'Related IPv4:')
+        for ip in tree.data['a']:
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+
+        print('[-]\t\t' + tabs + 'Related IPv6:')
+        for ip in tree.data['aaaa']:
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+
+        for child in tree.children:
+            print('[-]')
+            print_dns_recursive(child, tabs + '\t\t')
+        return
 
 
 def main(url):
     results = start_search(url)
+    print_dns_object(results)
 
 
-if __name__ == '__main__' and len(sys.argv) == 2:
+if __name__ == '__main__': # and len(sys.argv) == 2:
     print('Start!')
-    main('daeo.com')
+    main('0xword.com')
 
