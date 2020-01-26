@@ -125,9 +125,15 @@ def print_dns_object(tree):
 
 
 def print_dns_recursive(tree, tabs):
-    if tree.children == []:
-        print('[+]' + tabs + tree.url + ':')
-
+    # if tree.children == []:
+    print(type(tree.url))
+    url = tree.url if type(tree.url) == str else tree.url.to_text()
+    print('[+]' + tabs + url + ':')
+    print('[+]\t' + tabs + 'Mail servers:')
+    for mail in tree.data['mx']:
+        print('[+]\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']:')
+        for ip in mail[1]:
+            print('[+]\t' + tabs + str(mail[0].exchange) + ' [' + str(mail[0].preference) + ']:' + str(ip))
 
 
 def main(url):
