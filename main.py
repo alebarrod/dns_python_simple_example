@@ -137,11 +137,11 @@ def print_dns_recursive(tree, tabs):
 
         print('[-]\t\t' + tabs + 'Related IPv4:')
         for ip in tree.data['a']:
-            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']')
 
         print('[-]\t\t' + tabs + 'Related IPv6:')
         for ip in tree.data['aaaa']:
-            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']')
         return
     else:
         print('[+]\t' + tabs + url + ':')
@@ -152,11 +152,11 @@ def print_dns_recursive(tree, tabs):
 
         print('[-]\t\t' + tabs + 'Related IPv4:')
         for ip in tree.data['a']:
-            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']')
 
         print('[-]\t\t' + tabs + 'Related IPv6:')
         for ip in tree.data['aaaa']:
-            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']:')
+            print('[-]\t\t\t' + tabs + str(ip) + ' [' + str(url) + ']')
 
         for child in tree.children:
             print('[-]')
