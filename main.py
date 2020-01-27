@@ -189,11 +189,12 @@ def print_dns_recursive(tree, tabs):
 # Creates a tree given a domain (results) and prints it.
 # Input (url which is a domain (str)) - Output (None)
 def main(url):
+    print('Start!')
     results = start_search(url)
+    print('Resulting tree: ')
     print_dns_object(results)
 
 
 if __name__ == '__main__' and len(sys.argv) == 2:
-    print('Start!')
     main(sys.argv[1])
 
