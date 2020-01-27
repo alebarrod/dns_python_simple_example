@@ -2,18 +2,17 @@
 
 This is a small program that given an URL can get info recursively about DNS.
 
-## Disclaimer
+## Index
 
-This code is just a small example of how to use pydns. The code is free to be used or modified as open source.
-
-If you manage to scan repeatedly a domain, which can be seen as a malicious practice, you may be spotted by an IDS or 
-IPS.
-
-Your IP may be blocked or even you will be found using your public IP and ISP. Do not overuse it over the same domain.
+- Requirements
+- Main functions
+- Example
+- Notes
+- Disclaimer
 
 ## Requirements
 
-To develop this code and also recomended to run this example it was used:
+To develop this code and also recommended to run this example it was used:
 
 - Python 3.6.4
 - dnspython package 1.16.0
@@ -66,5 +65,16 @@ ns51--.we----sa.eu.
 ## Notes
 
 - CNAME register is requested but not used in this example.
-- There are many more registers which can be usefull as SOA or PTR.
+- There are many more registers which can be useful as SOA or PTR.
 - The best way to understand how a protocol,tool or programming language work is trying to use it.
+
+## Disclaimer
+
+This code is just a small example of how to use pydns. The code is free to be used or modified as open source.
+
+Remember: Use this code at your own risk without breaking the law or making a harmful use of it.
+
+If you manage to scan repeatedly a domain, which can be seen as a malicious 
+practice, you may be spotted by an IDS or IPS. 
+
+Your IP may be blocked or even you will be found using your public IP and ISP. Do not overuse it over the same domain.
